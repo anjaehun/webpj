@@ -1,7 +1,7 @@
 package db;
 
 public class Bookmark {
-  
+ // 커밋 테스트 하기
 private int BOOKMARK_ID ; 
    private String BOOKMARK_NAME; 
    private int ORDER_NO ; 
