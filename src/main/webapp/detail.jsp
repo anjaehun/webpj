@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>와이파이 상세보기</title>
 <style>
 table {
 	font-family: arial, sans-serif;

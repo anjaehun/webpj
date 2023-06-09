@@ -105,159 +105,143 @@ public class WifiService {
      * @throws ParseException
      * @throws IOException
      */
-    public  void jsonImport() throws ParseException, IOException {
+    public void jsonImport() throws ParseException, IOException {
         String url = "jdbc:mariadb://127.0.0.1:3306/mission";
         String dbUserId = "root";
         String dbPassWord = "zerobase";
 
-        // 1. 드라이버 로드
         try {
             Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             throw new RuntimeException(ex);
         }
 
-        // 연결 관련 라이브러리 생성자
         Connection connection = null;
-
-        // 상태 관련
         Statement statement = null;
         PreparedStatement preparedStatement = null;
-
-        // 결과 값 관련
         ResultSet rs = null;
 
-        // 2. 커넥션 객체 생성
         JSONParser jsonParser = new JSONParser();
         try {
             connection = DriverManager.getConnection(url, dbUserId, dbPassWord);
             statement = connection.createStatement();
             WifiService apiExplorer = new WifiService();
-            
-           
+
             WifiService test = new WifiService();
             String cnt = apiExplorer.urlParser("1", "1");
-            
-            // 개수 
-//            JSONObject total = (JSONObject) jsonParser.parse(test.urlParser("1", "1"));
-//            JSONObject totalcount = (JSONObject) total.get("TbPublicWifiInfo");
             long listTotalCount = apiExplorer.totalCnt();
-            
-             // System.out.println("list_total_count: " + listTotalCount);
-            
-            
-            
-            // 첫번째로 1 ~ 1000, 1001 ~ 1000 , 2 ~2000 , 3 ~ 3000 , 4 ~ 4000, 
-            
+
             long totalCount = listTotalCount;
             long batchSize = 1000;
-            
-            
+
+            String sql = "INSERT IGNORE INTO TB_WIFI_LOCATION_INFO (\r\n"
+                    + "    X_SWIFI_MGR_NO,\r\n"
+                    + "    X_SWIFI_WRDOFC,\r\n"
+                    + "    X_SWIFI_MAIN_NM,\r\n"
+                    + "    X_SWIFI_ADRES1,\r\n"
+                    + "    X_SWIFI_ADRES2,\r\n"
+                    + "    X_SWIFI_INSTL_FLOOR,\r\n"
+                    + "    X_SWIFI_INSTL_TY,\r\n"
+                    + "    X_SWIFI_INSTL_MBY,\r\n"
+                    + "    X_SWIFI_SVC_SE,\r\n"
+                    + "    X_SWIFI_CMCWR,\r\n"
+                    + "    X_SWIFI_CNSTC_YEAR,\r\n"
+                    + "    X_SWIFI_INOUT_DOOR,\r\n"
+                    + "    X_SWIFI_REMARS3,\r\n"
+                    + "    LAT,\r\n"
+                    + "    LNT,\r\n"
+                    + "    WORK_DTTM\r\n"
+                    + ") VALUES (\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?,\r\n"
+                    + "    ?\r\n"
+                    + "); ";
+
+            // Prepare the statement for batch insert
+            preparedStatement = connection.prepareStatement(sql);
+
+            int count = 0; // Counter for tracking the number of inserts
+
             for (long i = 1; i <= totalCount; i += batchSize) {
-                String start =  String.valueOf(i);
+                String start = String.valueOf(i);
                 String end = String.valueOf(Math.min(i + batchSize - 1, totalCount));
-                
-                // 해당 범위의 데이터를 처리하는 코드 작성
-                // 예: apiExplorer.urlParser(start, end);
-                // 4. 쿼리 실행
-              
-                // 처리한 결과에 대한 작업 수행
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(test.urlParser(start,end ));
+
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(test.urlParser(start, end));
                 JSONObject tbPublicWifiInfo = (JSONObject) jsonObject.get("TbPublicWifiInfo");
                 JSONArray rowArray = (JSONArray) tbPublicWifiInfo.get("row");
-                
-                String sql = "INSERT IGNORE INTO TB_WIFI_LOCATION_INFO (\r\n"
-                		+ "    X_SWIFI_MGR_NO,\r\n"
-                		+ "    X_SWIFI_WRDOFC,\r\n"
-                		+ "    X_SWIFI_MAIN_NM,\r\n"
-                		+ "    X_SWIFI_ADRES1,\r\n"
-                		+ "    X_SWIFI_ADRES2,\r\n"
-                		+ "    X_SWIFI_INSTL_FLOOR,\r\n"
-                		+ "    X_SWIFI_INSTL_TY,\r\n"
-                		+ "    X_SWIFI_INSTL_MBY,\r\n"
-                		+ "    X_SWIFI_SVC_SE,\r\n"
-                		+ "    X_SWIFI_CMCWR,\r\n"
-                		+ "    X_SWIFI_CNSTC_YEAR,\r\n"
-                		+ "    X_SWIFI_INOUT_DOOR,\r\n"
-                		+ "    X_SWIFI_REMARS3,\r\n"
-                		+ "    LAT,\r\n"
-                		+ "    LNT,\r\n"
-                		+ "    WORK_DTTM\r\n"
-                		+ ") VALUES (\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?,\r\n"
-                		+ "    ?\r\n"
-                		+ "); ";
-                 
-                int result = 0; 
-	            for (Object obj : rowArray) {
-	            	JSONObject rowObject = (JSONObject) obj;
-//	            	Object X_SWIFI_MGR_NO = rowObject.get("X_SWIFI_MGR_NO");
-//	            	Object X_SWIFI_WRDOFC = rowObject.get("X_SWIFI_WRDOFC");
-//	            	Object X_SWIFI_MAIN_NM = rowObject.get("X_SWIFI_MAIN_NM");
-//	            	Object X_SWIFI_ADRES1 = rowObject.get("X_SWIFI_ADRES1");
-//	            	Object X_SWIFI_ADRES2 = rowObject.get("X_SWIFI_ADRES2");
-//	            	Object X_SWIFI_INSTL_FLOOR = rowObject.get("X_SWIFI_INSTL_FLOOR");
-//	            	Object X_SWIFI_INSTL_TY = rowObject.get("X_SWIFI_INSTL_TY");
-//	            	Object X_SWIFI_INSTL_MBY = rowObject.get("X_SWIFI_INSTL_MBY");
-//	            	Object X_SWIFI_SVC_SE = rowObject.get("X_SWIFI_SVC_SE");
-//	            	Object X_SWIFI_CMCWR = rowObject.get("X_SWIFI_CMCWR");
-//	            	Object X_SWIFI_CNSTC_YEAR = rowObject.get("X_SWIFI_CNSTC_YEAR");
-//	            	Object X_SWIFI_INOUT_DOOR = rowObject.get("X_SWIFI_INOUT_DOOR");
-//	            	Object X_SWIFI_REMARS3 = rowObject.get("X_SWIFI_REMARS3");
-//	            	Object LAT = rowObject.get("LAT");
-//	            	Object LNT = rowObject.get("LNT");
-//	            	Object WORK_DTTM = rowObject.get("WORK_DTTM");
-	            	
-	            	
-	            	 preparedStatement = connection.prepareStatement(sql);
-	                 preparedStatement.setObject(1 ,  rowObject.get("X_SWIFI_MGR_NO"));
-	                 preparedStatement.setObject(2 ,   rowObject.get("X_SWIFI_WRDOFC"));
-	                 preparedStatement.setObject(3 ,  rowObject.get("X_SWIFI_MAIN_NM"));
-	                 preparedStatement.setObject(4 ,  rowObject.get("X_SWIFI_ADRES1"));
-	                 preparedStatement.setObject(5 ,  rowObject.get("X_SWIFI_ADRES2"));
-	                 preparedStatement.setObject(6 ,  rowObject.get("X_SWIFI_INSTL_FLOOR"));
-	                 preparedStatement.setObject(7 ,  rowObject.get("X_SWIFI_INSTL_TY"));
-	                 preparedStatement.setObject(8 ,  rowObject.get("X_SWIFI_INSTL_MBY"));
-	                 preparedStatement.setObject(9 ,  rowObject.get("X_SWIFI_SVC_SE"));
-	                 preparedStatement.setObject(10,  rowObject.get("X_SWIFI_CMCWR"));
-	                 preparedStatement.setObject(11,  rowObject.get("X_SWIFI_CNSTC_YEAR"));
-	                 preparedStatement.setObject(12,  rowObject.get("X_SWIFI_INOUT_DOOR"));
-	                 preparedStatement.setObject(13,  rowObject.get("X_SWIFI_REMARS3"));
-	                 preparedStatement.setObject(14,  rowObject.get("LAT"));
-	                 preparedStatement.setObject(15,  rowObject.get("LNT"));
-	                 preparedStatement.setObject(16,  rowObject.get("WORK_DTTM"));
-	                 int affected = preparedStatement.executeUpdate();
-	                 // result = affected;
-	                 if (affected > 0) {
-	                   //  System.out.println("저장 성공");
-	                 } else {
-	                     System.out.println("저장 실패");
-	                 }
-	            }
-	            
-	           
+
+                for (Object obj : rowArray) {
+                    JSONObject rowObject = (JSONObject) obj;
+                    preparedStatement.setObject(1, rowObject.get("X_SWIFI_MGR_NO"));
+                    preparedStatement.setObject(2, rowObject.get("X_SWIFI_WRDOFC"));
+                    preparedStatement.setObject(3, rowObject.get("X_SWIFI_MAIN_NM"));
+                    preparedStatement.setObject(4, rowObject.get("X_SWIFI_ADRES1"));
+                    preparedStatement.setObject(5, rowObject.get("X_SWIFI_ADRES2"));
+                    preparedStatement.setObject(6, rowObject.get("X_SWIFI_INSTL_FLOOR"));
+                    preparedStatement.setObject(7, rowObject.get("X_SWIFI_INSTL_TY"));
+                    preparedStatement.setObject(8, rowObject.get("X_SWIFI_INSTL_MBY"));
+                    preparedStatement.setObject(9, rowObject.get("X_SWIFI_SVC_SE"));
+                    preparedStatement.setObject(10, rowObject.get("X_SWIFI_CMCWR"));
+                    preparedStatement.setObject(11, rowObject.get("X_SWIFI_CNSTC_YEAR"));
+                    preparedStatement.setObject(12, rowObject.get("X_SWIFI_INOUT_DOOR"));
+                    preparedStatement.setObject(13, rowObject.get("X_SWIFI_REMARS3"));
+                    preparedStatement.setObject(14, rowObject.get("LAT"));
+                    preparedStatement.setObject(15, rowObject.get("LNT"));
+                    preparedStatement.setObject(16, rowObject.get("WORK_DTTM"));
+
+                    preparedStatement.addBatch(); // Add the insert statement to the batch
+
+                    count++;
+
+                    if (count % 1000 == 0) {
+                        // Execute the batch insert
+                        int[] batchResult = preparedStatement.executeBatch();
+
+                        // Check the results
+                        for (int result : batchResult) {
+                            if (result <= 0) {
+                                System.out.println("저장 실패");
+                            }
+                        }
+
+                        preparedStatement.clearBatch(); // Clear the batch
+                        count = 0; // Reset the counter
+
+                        // Release resources
+                        preparedStatement.close();
+                        preparedStatement = connection.prepareStatement(sql);
+                    }
+                }
             }
-            System.out.println(totalCount + "건이 저장되었습니다2");
-           // rs = statement.executeQuery(sql);
-          
+
+            // Execute the remaining batch insert
+            int[] batchResult = preparedStatement.executeBatch();
+
+            // Check the results
+            for (int result : batchResult) {
+                if (result <= 0) {
+                    System.out.println("저장 실패");
+                }
+            }
+
+            System.out.println(totalCount + "건이 저장되었습니다");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            // 객체 연결 해제
             try {
                 if (rs != null && !rs.isClosed()) {
                     rs.close();
@@ -281,8 +265,17 @@ public class WifiService {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+
+            try {
+                if (preparedStatement != null && !preparedStatement.isClosed()) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
+
 
     /*
      * 데이터 파싱 인서트 코드 끝 
