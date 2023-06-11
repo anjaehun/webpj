@@ -1,9 +1,3 @@
-
--- 삭제나 생성 관련 
-exam-delete or sample-update
--- 삭제나 생성 메서드 처리 코드 
-exam-delete-fin or sample-update-fin 
-
 -----------------------------------
 자바 코드 설명 
 ----------------------------------- 
