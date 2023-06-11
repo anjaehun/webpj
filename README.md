@@ -4,13 +4,13 @@
 Sample.java -- 샘플 생성자 
 SampleService.java -- 샘플 처리 코드 / 주로 crud 메서드 저장 용도  
 
-Member.java -- sample code 
-MemberService.java -- sample code 
+Member.java / MemberService.java -- 작업 할때의 sample code 
+
 
 -- 삭제나 생성 관련 
-sample-delete or sample-update
+exam-delete or sample-update
 -- 삭제나 생성 메서드 처리 코드 
-sample-delete-fin or sample-update-fin 
+exam-delete-fin or sample-update-fin 
 
 -----------------------------------
 자바 코드 설명 
