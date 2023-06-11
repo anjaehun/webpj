@@ -1,12 +1,11 @@
-apiFind.java
--- 북마크 카테고리 코드 모음 
 
--- java 예제 
--- java file  
 
 - jsp 처리 양식 설명 
 Sample.java -- 샘플 생성자 
 SampleService.java -- 샘플 처리 코드 / 주로 crud 메서드 저장 용도  
+
+Member.java -- sample code 
+MemberService.java -- sample code 
 
 -- 삭제나 생성 관련 
 sample-delete or sample-update
