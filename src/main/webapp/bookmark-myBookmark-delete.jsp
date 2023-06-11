@@ -61,10 +61,7 @@ function deleteAlert() {
 	regDt = request.getParameter("regDt");
 	
 	
-	out.println(bookId);
-	out.println(bookname);
-	out.println(wifiname);
-	out.println(regDt);
+	
 		
 	
 	// 수정 버튼 누른 후 작업 

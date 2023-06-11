@@ -39,12 +39,11 @@ th {
 </head>
 <body>
 
-<script>
-
-function deleteAlert() {
-	alert("북마크 정보를 삭제하였습니다");
-}
-</script>
+	<script>
+		function deleteAlert() {
+			alert("북마크 정보를 삭제하였습니다");
+		}
+	</script>
 	<%
 	BookmarkService bookmarkService = new BookmarkService();
 	%>
@@ -60,17 +59,9 @@ function deleteAlert() {
 		bookName = request.getParameter("bookName");
 		bookName = request.getParameter("bookName");
 
-		
 	}
-	
-	// 수정 버튼 누른 후 작업 
-	
-  
-	
-	
-	
-	
-	
+
+	// 수정 버튼 누른 후 작업
 	%>
 
 	<h1>북마크 그룹</h1>
@@ -96,10 +87,12 @@ function deleteAlert() {
 					<th>순서</th>
 					<td><%=order%></td>
 				</tr>
-				<input type="hidden" id="bookId" name="bookId" value="<%=bookId %>">
+				<input type="hidden" id="bookId" name="bookId" value="<%=bookId%>">
 				<tr>
-				    
-					<td colspan="17" align="center"><a href="bookmark-group.jsp">돌아가기</a> |<button type="submit" onclick="deleteAlert()">삭제</button></td>
+
+					<td colspan="17" align="center"><a href="bookmark-group.jsp">돌아가기</a>
+						|
+						<button type="submit" onclick="deleteAlert()">삭제</button></td>
 				</tr>
 			</form>
 		</tbody>
