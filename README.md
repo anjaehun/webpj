@@ -38,17 +38,20 @@
 
 - 와이파이 주요 메서드 (WifiService.java)
 
-- urlParser(start,end) {} : json 범위 내 데이터 보기 
+ urlParser(start,end) {} 
+ - json 범위 내 데이터 보기 
 
-- totalCnt() {} : 오픈데이터 개수 확인 
+totalCnt() {}  
+- 오픈데이터 개수 확인 
 
-- jsonImport() {} : 임포트 하는 코드 
+ jsonImport() {} 
+-  임포트 하는 코드 
 
-- public List<Wifi> list(String MyLat, String MyLnt){} 
-: 가까운 거리 20개 뽑는 코드 
+ public List<Wifi> list(String MyLat, String MyLnt){} 
+- 가까운 거리 20개 뽑는 코드 
 
-- public Wifi detail(String mgrNo, String wifiNm) {}
-:  근처 위치중 1개의 데이터 뽑기  
+ public Wifi detail(String mgrNo, String wifiNm) {}
+- 근처 위치중 1개의 데이터 뽑기  
 
 ------------------------------------------
 <히스토리(검색 결과 저장) 처리>
@@ -68,7 +71,7 @@
  
   public void HistorydeleteById(String historyId){}
   
- 히스토리 특정 pk 값 1건 삭제 --
+ 히스토리 특정 pk 값 1건 삭제 
 
 ------------------------------------------
 <북마크 카테고리 설정>
@@ -92,10 +95,8 @@ public void BookmarkDeleteById(String bookId){}
  -   20개 중 1개 조회했을 때 의 화면에서 
 	 select box 처리 코드 
  
-  public Bookmark selectBoxAfterSelectByOne(String bookmarkName) {
-  
-    - select box 에서 한건 을 
-      넘겼을 때 데이터 출력하는 역활 
+  public Bookmark selectBoxAfterSelectByOne(String bookmarkName) {}
+  - select box 에서 한건 을 넘겼을 때 데이터 1건 출력
 	
 ------------------------------------------
 <사용자가 설정한 북마크 저장, 전체보기 , 삭제 >
