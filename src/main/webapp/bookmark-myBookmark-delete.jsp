@@ -109,7 +109,7 @@ function deleteAlert() {
 				<input type="hidden" id="bookId" name="bookId" value="<%=bookId %>">
 				<tr>
 				    
-					<td colspan="17" align="center"><a href="bookmark-group.jsp">돌아가기</a> |<button type="submit" onclick="deleteAlert()">삭제</button></td>
+					<td colspan="17" align="center"><a href="bookmark-mymark.jsp">돌아가기</a> |<button type="submit" onclick="deleteAlert()">삭제</button></td>
 				</tr>
 			</form>
 		</tbody>
