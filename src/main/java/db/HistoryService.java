@@ -14,7 +14,6 @@ public class HistoryService {
 	
 	    /*
 	    * 검색 기록 insert 
-	    * @param member 회원정보
 	    *
 	    * */
 	    public void historyRecord(String LAT,String LNT){
@@ -94,6 +93,10 @@ public class HistoryService {
 	        }
 	    }
 	    
+	    /**
+	     * history 전체 보기 
+	     * @return
+	     */
 	    public List<History> historySelect(){
 
 	        List<History> historyList = new ArrayList<>();    	
@@ -191,6 +194,10 @@ public class HistoryService {
 	        return historyList; 
 	    }
 	    
+	    /**
+	     * 히스토리 특정 pk 값 1건 삭제 
+	     * @param historyId
+	     */
 	    public void HistorydeleteById(String historyId){
 	        String url = "jdbc:mariadb://127.0.0.1:3306/mission";
 	        String dbUserId = "root";

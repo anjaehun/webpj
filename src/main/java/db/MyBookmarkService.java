@@ -11,8 +11,9 @@ import java.util.List;
 
 public class MyBookmarkService {
 	/**
+	 * 사용자가 설정한 
 	 * 북마크 인서트 코드 
-	 * @param bookmark
+	 *
 	 */
 	public void myBookmarkInsert(String mgrNo , String bookmarkId, String bookName ,String name) {
 		String url = "jdbc:mariadb://127.0.0.1:3306/mission";
@@ -94,7 +95,7 @@ public class MyBookmarkService {
 	}
 	
 	/**
-	  * 북마크 관련 메소드 
+	  * 사용자가 설정한 북마크 관련 조회 메소드 
 	  * @return
 	  */
 	 public List<MyBookMark> List() {
@@ -191,7 +192,6 @@ public class MyBookmarkService {
 	 
 	    /**
 		 * 아이디 값 받아와서 삭제를 하는 메소드 
-		 * @param bookId
 		 */
 		 public void MyBookmarkDeleteById(String mybookId){
 		        String url = "jdbc:mariadb://127.0.0.1:3306/mission";

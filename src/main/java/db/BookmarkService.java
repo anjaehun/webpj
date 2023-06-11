@@ -12,7 +12,7 @@ import java.util.List;
 public class BookmarkService {
 	/**
 	 * 북마크 인서트 코드 
-	 * @param bookmark
+	 * 
 	 */
 	public void bookmarkInsert(String bookmarkName , String bookmarkNo) {
 		String url = "jdbc:mariadb://127.0.0.1:3306/mission";
@@ -90,7 +90,10 @@ public class BookmarkService {
 		}
 	}
 
-	
+	/**
+	 * 북마크 카테고리 전체 리스트 뽑기
+	 * @return
+	 */
 	public List<Bookmark> list() {
 
 		List<Bookmark> bookmarkList = new ArrayList<>();
@@ -350,7 +353,8 @@ public class BookmarkService {
 	    }
 	 
 	 /**
-	  * 북마크 관련 메소드 
+	  * 20개 중 1개 조회했을 때 의 화면에서 
+	  * select box 처리 코드 
 	  * @return
 	  */
 	 public List<Bookmark> selectBoxList() {
@@ -437,7 +441,8 @@ public class BookmarkService {
 		}
 	 
 	 /**
-	  * 북마크 관련 메소드 
+	  * select box 에서 한건 을 
+	  * 넘겼을 때 데이터 출려하는 역활 
 	  * @return
 	  */
 	 public Bookmark selectBoxAfterSelectByOne(String bookmarkName) {
