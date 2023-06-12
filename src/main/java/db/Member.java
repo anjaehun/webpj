@@ -1,8 +1,9 @@
 package db;
 
 import java.util.Date;
-
+// 샘플 코드 
 public class Member {
+	
 	private String memberType;
 	private String userId;
 	private String password;

@@ -1,10 +1,15 @@
 package db;
 
 public class MyBookMark {
+	// 내 북마크 아이디 
 	private int MYBOOKMARK_ID;
+	// 북마크아이디(fk)
 	private int BOOKMARK_ID;
+	// 와이파이 명
 	private String WIFI_NAME;
+	// 북마크 이름 
 	private String BOOKMARK_NAME; 
+	// 등록일자 
 	private String REG_DT;
 	
 	public int getMYBOOKMARK_ID() {

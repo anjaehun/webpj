@@ -3,9 +3,13 @@ package db;
 public class Bookmark {
  // 커밋 테스트 하기
 private int BOOKMARK_ID ; 
+   // 북마크 이름 
    private String BOOKMARK_NAME; 
+   // 북마크 구분자 
    private int ORDER_NO ; 
+   // 등록일자 
    private String REG_DT ; 
+   // 수정일자 
    private String MOD_DT ; 
    
    public int getBOOKMARK_ID() {

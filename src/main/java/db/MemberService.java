@@ -3,7 +3,7 @@ package db;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
-
+// 샘플코드
 public class MemberService {
 
 	public List<Member> list() {

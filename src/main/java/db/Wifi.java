@@ -17,24 +17,41 @@ public class Wifi {
 //    "LAT": "126.9167",
 //    "LNT": "37.62364",
 //    "WORK_DTTM": "2023-05-29 10:58:24.0"
+	// 관리 번호 
 	private String X_SWIFI_MGR_NO;
+	// 자치구 
 	private String X_SWIFI_WRDOFC;
-	
+	// 와이파이명
 	private String X_SWIFI_MAIN_NM;
+	// 상세주소1
 	private String X_SWIFI_ADRES1;
+	// 상세주소 2
 	private String X_SWIFI_ADRES2;
+	// 설치위치(층)
 	private String X_SWIFI_INSTL_FLOOR;
+	// 설치 유형
 	private String X_SWIFI_INSTL_TY;
+	// 설치 기관 
 	private String X_SWIFI_INSTL_MBY;
+	// 서비스 구분 
 	private String X_SWIFI_SVC_SE;
+	// 망종류 
 	private String X_SWIFI_CMCWR;
+	// 설치년도 
 	private String X_SWIFI_CNSTC_YEAR;
+	// 실내외 구분
 	private String X_SWIFI_INOUT_DOOR;
+	// wifi 접속환경 
 	private String X_SWIFI_REMARS3;
+	// x 좌표 
 	private Double LAT;
+	// y 좌표 
 	private Double LNT;
+	// 작업일자 
 	private String WORK_DTTM;
+	// 가까운 거리 
 	private Double KM;
+	// 가까운 위치 (사용 x)
 	private String X_NEAR_LOCATION;
 	
 	
