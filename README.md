@@ -22,7 +22,8 @@
 <ERD 사진>
 ------------------------------------------
 
-![image](https://github.com/anjaehun/webpj/assets/77096665/d584d8a6-ce32-44b6-b854-0b6c56f9f3d6)
+![image](https://github.com/anjaehun/webpj/assets/77096665/220a2e95-3950-4189-aeb7-ea01a8fbbd1f)
+
 
 ------------------------------------------
 <Wifi java 처리>
