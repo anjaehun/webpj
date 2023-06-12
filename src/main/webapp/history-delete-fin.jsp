@@ -13,6 +13,7 @@
 </head>
 <body>
 	<%
+	// push test
 	HistoryService historyService = new HistoryService();
 	String historyId = request.getParameter("historyId");
 	historyService.HistorydeleteById(historyId);
